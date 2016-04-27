@@ -91,4 +91,16 @@ public class TestLoopEngine {
 		assertFalse(loopEngine.isAllLoopClosed());
 	}
 
+	@Test
+	public void testTurnClose2() {
+		LoopEngine loopEngine = new LoopEngine(3, 3);
+		int states[][] = { { 1, 4, 3 }, { 0, 0, 4 }, { 0, 0, 0 } };
+		loopEngine.setTableStates(states);
+		assertFalse(loopEngine.isAllLoopClosed());
+		loopEngine.turnCellClockWiseAt(0, 0);
+		assertFalse(loopEngine.isAllLoopClosed());
+		loopEngine.turnCellClockWiseAt(1, 2);
+		assertTrue(loopEngine.isAllLoopClosed());
+	}
+
 }
