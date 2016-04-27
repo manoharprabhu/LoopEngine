@@ -78,7 +78,7 @@ public class TestLoopEngine {
 
 		assertTrue(loopEngine.isAllLoopClosed());
 	}
-	
+
 	@Test
 	public void testTurnClose() {
 		LoopEngine loopEngine = new LoopEngine(2, 2);

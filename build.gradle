@@ -1,0 +1,18 @@
+apply plugin: 'java'
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'LoopEngine',
+                   'Implementation-Version': version
+    }
+}
