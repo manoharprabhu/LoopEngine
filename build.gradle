@@ -30,3 +30,10 @@ jar {
                    'Implementation-Version': version
     }
 }
+
+test {
+	//we want display the following test events
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
