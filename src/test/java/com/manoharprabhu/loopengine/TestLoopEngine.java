@@ -1,14 +1,14 @@
 package com.manoharprabhu.loopengine;
 
-import static org.junit.Assert.*;
-import junit.framework.Assert;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class TestLoopEngine {
 
 	@Test
-	public void testEmpty() {
+	public void testEmpty() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(1, 1);
 		int states[][] = { { 0 } };
 		loopEngine.setTableStates(states);
@@ -17,7 +17,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testNotClosed() {
+	public void testNotClosed() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(1, 1);
 		int states[][] = { { 1 } };
 		loopEngine.setTableStates(states);
@@ -26,7 +26,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testAllClosed() {
+	public void testAllClosed() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(1, 2);
 		int states[][] = { { 2, 4 } };
 		loopEngine.setTableStates(states);
@@ -35,7 +35,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testAllOpen() {
+	public void testAllOpen() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(1, 2);
 		int states[][] = { { 2, 2 } };
 		loopEngine.setTableStates(states);
@@ -44,7 +44,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testSomeOpen1() {
+	public void testSomeOpen1() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(2, 2);
 		int states[][] = { { 2, 3 }, { 6, 1 } };
 		loopEngine.setTableStates(states);
@@ -53,7 +53,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testSomeOpen2() {
+	public void testSomeOpen2() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(2, 2);
 		int states[][] = { { 3, 3 }, { 1, 5 } };
 		loopEngine.setTableStates(states);
@@ -62,7 +62,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testAllClosed2() {
+	public void testAllClosed2() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(2, 2);
 		int states[][] = { { 3, 3 }, { 1, 1 } };
 		loopEngine.setTableStates(states);
@@ -71,7 +71,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testAllClosed3() {
+	public void testAllClosed3() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(3, 3);
 		int states[][] = { { 0, 3, 0 }, { 2, 15, 4 }, { 0, 1, 0 } };
 		loopEngine.setTableStates(states);
@@ -80,7 +80,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testTurnClose() {
+	public void testTurnClose() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(2, 2);
 		int states[][] = { { 3, 3 }, { 1, 4 } };
 		loopEngine.setTableStates(states);
@@ -92,7 +92,7 @@ public class TestLoopEngine {
 	}
 
 	@Test
-	public void testTurnClose2() {
+	public void testTurnClose2() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(3, 3);
 		int states[][] = { { 1, 4, 3 }, { 0, 0, 4 }, { 0, 0, 0 } };
 		loopEngine.setTableStates(states);
@@ -101,6 +101,27 @@ public class TestLoopEngine {
 		assertFalse(loopEngine.isAllLoopClosed());
 		loopEngine.turnCellClockWiseAt(1, 2);
 		assertTrue(loopEngine.isAllLoopClosed());
+	}
+	
+	@Test(expected=Exception.class)
+	public void testMismatchDimentions() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(3, 3);
+		int states[][] = { { 1, 4, 3 }, { 0, 0, 4 }};
+		loopEngine.setTableStates(states);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testInvalidState() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(2, 3);
+		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
+		loopEngine.setTableStates(states);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testNegativeInitialization() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(-5, 3);
+		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
+		loopEngine.setTableStates(states);
 	}
 
 }
