@@ -6,8 +6,15 @@ plugins {
 cobertura.coverageFormats = ['html', 'xml']
 
 apply plugin: 'java'
+apply plugin: 'jacoco'
 sourceCompatibility = 1.7
 version = '1.0'
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
 
 repositories {
     mavenCentral()
