@@ -112,15 +112,36 @@ public class TestLoopEngine {
 	}
 	
 	@Test(expected=Exception.class)
-	public void testInvalidState() throws Exception {
+	public void testInvalidStateMore() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(2, 3);
 		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
 		loopEngine.setTableStates(states);
 	}
 	
 	@Test(expected=Exception.class)
-	public void testNegativeInitialization() throws Exception {
+	public void testInvalidStateLess() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(2, 3);
+		int states[][] = { { -1, 18, 3 }, { -1, 0, 4 }};
+		loopEngine.setTableStates(states);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testInvalidStateColSize() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(2, 4);
+		int states[][] = { { 1, 1, 3 }, { 1, 1, 4 }};
+		loopEngine.setTableStates(states);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testNegativeInitializationRow() throws Exception {
 		LoopEngine loopEngine = new LoopEngine(-5, 3);
+		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
+		loopEngine.setTableStates(states);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testNegativeInitializationCol() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(2, -3);
 		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
 		loopEngine.setTableStates(states);
 	}
