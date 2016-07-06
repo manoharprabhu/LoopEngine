@@ -3,6 +3,7 @@ package com.manoharprabhu.loopengine;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestLoopEngine {
@@ -122,6 +123,19 @@ public class TestLoopEngine {
 		LoopEngine loopEngine = new LoopEngine(-5, 3);
 		int states[][] = { { 1, 18, 3 }, { -1, 0, 4 }};
 		loopEngine.setTableStates(states);
+	}
+	
+	@Test
+	public void testRandomActions() throws Exception {
+		LoopEngine loopEngine = new LoopEngine(4, 4);
+		int states[][] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,1}};
+		loopEngine.setTableStates(states);
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				loopEngine.turnCellClockWiseAt(i, j);
+			}
+		}
+		Assert.assertFalse(loopEngine.isAllLoopClosed());
 	}
 
 }
